@@ -1,8 +1,12 @@
  /* Navbar container */
+body{
+  margin: 0;
+}
 .navbar {
   overflow: hidden;
   background-color: #333;
   font-family: Arial;
+  padding: 0px;
 }
 
 /* Links inside the navbar */
