@@ -1,24 +1,26 @@
- /* Navbar container */
-
- /*
+/*
 COLORES
 GRIS: #424242;
 NARANJA: #fa6a31;
 AMARILLO: ffcd55;
-
-
- */
+*/
 body{
   height: 100%;
   width: 100%;
   left: 0px;
   right: 0px;
-  margin: 0;
+  margin: 0px;
 
 }
+:root {
+  --color-principal: #424242;
+  --color-secundario: #fa6a31;
+  --color-terciario: #ffcd55;
+}
+ /* Navbar container */
 .navbar {
   overflow: hidden;
-  background-color: #424242;
+  background-color: var(--color-principal);
   font-family: Arial;
   padding: 0px;
 }
@@ -59,7 +61,7 @@ body{
 
 /* Add a red background color to navbar links on hover */
 .navbar a:hover, .dropdown:hover .dropbtn {
-  background-color: #fa6a31;
+  background-color: var(--color-secundario);
 }
 
 
@@ -109,66 +111,52 @@ input[type=text], input[type=password] {
     box-sizing: border-box;
 }
 #contenido{
-  padding-top: 20px;
+  padding-top: 1%;
   padding-left: 50px;
   padding-right: 50px;
-  padding-left: 30px;
+  padding-bottom: 1%;
+}
+#imagen1,#imagen2,#imagen3,#imagen4{
+  padding: 0px;
+  height: 42vh;
+  background-position: center center;
+  background-repeat: no-repeat;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  /* background-attachment: fixed; */
+  display: inline-block;
 }
 #imagen1{
-  padding: 0px;
   width: 39%;
-  height: 45vh;
   background-image: url("../img/teatro.jpg");
-  background-position: center center;
-  background-repeat: no-repeat;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
-  background-attachment: fixed;
-  display: inline-block;
-
 }
 #imagen2{
-  padding: 0px;
   width: 60%;
-  height: 45vh;
   background-image: url("../img/festival.png");
-  background-position: center center;
-  background-repeat: no-repeat;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
-  background-attachment: fixed;
-  display: inline-block;
 }
 #imagen3{
-  padding: 0px;
   width: 59%;
-  height: 45vh;
   background-image: url("../img/concierto.jpg");
-  background-position: center center;
-  background-repeat: no-repeat;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
-  background-attachment: fixed;
-  display: inline-block;
 }
 #imagen4{
-  padding: 0px;
   width: 40%;
-  height: 45vh;
-  background-image: url("../img/concierto2.jpg");
-  background-position: center center;
-  background-repeat: no-repeat;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
-  background-attachment: fixed;
-  display: inline-block;
+  background-image: url("../img/avicii.png");
+}
 
+.zoom{
+        /* Aumentamos la anchura y altura durante 2 segundos */
+  transition: width 1s, height 1s, transform 1s;
+  -moz-transition: width 1s, height 1s, -moz-transform 1s;
+  -webkit-transition: width 1s, height 1s, -webkit-transform 1s;
+  -o-transition: width 1s, height 1s,-o-transform 1s;
+}
+.zoom:hover{
+  /* tranformamos el elemento al pasar el mouse por encima al doble de
+           su tamaño con scale(2). */
+  transform : scale(1.2);
+  -moz-transform : scale(1.2);      /* Firefox */
+  -webkit-transform : scale(1.2);   /* Chrome - Safari */
+  -o-transform : scale(1.2);        /* Opera */
 }
