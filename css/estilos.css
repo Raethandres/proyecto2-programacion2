@@ -70,10 +70,10 @@ body{
   display: none;
   position: absolute;
   right: 0;
-  margin: 10px;
+  /*margin: 10px;*/
   padding: 10px 10px 10px 10px;
-  background-color: #f9f9f9;
-  min-width: 160px;
+  background-color: #42424299;/* #fa6a3199; /* #42424299; /* #f9f9f9;*/
+  max-width: 30%;
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
   z-index: 1;
 }
@@ -96,12 +96,6 @@ a .logo :hover{
   background-color: #f9f9f9;
 }
 
-/* Show the dropdown menu on hover */
-/*.dropdown:hover .dropdown-content {
-  display: block;
-} */
-
-
 input[type=text], input[type=password] {
     width: 100%;
     padding: 12px 20px;
@@ -110,15 +104,24 @@ input[type=text], input[type=password] {
     border: 1px solid #ccc;
     box-sizing: border-box;
 }
+/********IMAGENES PRINCIPAL*************/
 #contenido{
   padding-top: 1%;
-  padding-left: 50px;
-  padding-right: 50px;
+  padding-left: 2%;
+  padding-right: 2%;
   padding-bottom: 1%;
+}
+#contenido div{
+  margin: 2px;
+  height: 42vh;
+  float: left; 
+  overflow:hidden;  
 }
 #imagen1,#imagen2,#imagen3,#imagen4{
   padding: 0px;
+  margin: 0px;
   height: 42vh;
+  width: 100%;
   background-position: center center;
   background-repeat: no-repeat;
   -webkit-background-size: cover;
@@ -129,19 +132,15 @@ input[type=text], input[type=password] {
   display: inline-block;
 }
 #imagen1{
-  width: 39%;
   background-image: url("../img/teatro.jpg");
 }
 #imagen2{
-  width: 60%;
   background-image: url("../img/festival.png");
 }
 #imagen3{
-  width: 59%;
   background-image: url("../img/concierto.jpg");
 }
 #imagen4{
-  width: 40%;
   background-image: url("../img/avicii.png");
 }
 
@@ -160,3 +159,4 @@ input[type=text], input[type=password] {
   -webkit-transform : scale(1.2);   /* Chrome - Safari */
   -o-transform : scale(1.2);        /* Opera */
 }
+/*********************************************************/
