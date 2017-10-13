@@ -22,3 +22,21 @@ $(".dropdown").click(function(){
 	
 	
 });
+
+$(".log").click(function(){
+	if ($("#user").value() && $("#pasword").value() ) {
+		$.ajax({
+            type: 'post',
+            url: 'form.php',
+            data: $('#login').serialize(),
+            dataType:'JSON',
+            success: function (result) {
+                if(result=="true"){
+                	console.log(result);
+                }
+              
+            }
+          });
+	}
+
+});
