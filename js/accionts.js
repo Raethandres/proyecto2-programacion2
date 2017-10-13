@@ -24,15 +24,16 @@ $(".dropdown").click(function(){
 });
 
 $(".log").click(function(){
-	if ($("#user").value() && $("#pasword").value() ) {
+	print($('form').serialize());
+	if ($("#user").val() && $("#pasword").val() ) {
 		$.ajax({
             type: 'post',
             url: 'form.php',
-            data: $('#login').serialize(),
+            data: $('form').serialize(),
             dataType:'JSON',
             success: function (result) {
                 if(result=="true"){
-                	console.log(result);
+                	print(result);
                 }
               
             }
