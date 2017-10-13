@@ -21,17 +21,19 @@ $(".dropdown").click(function(){
 	}
 	
 	
+
 });
 
 $(".log").click(function(){
-	print($('form').serialize());
-	if ($("#user").val() && $("#pasword").val() ) {
+	if ($("#user").val()!=" " && $("#pasword").val()!=" " ) {
+		print("ajax");
 		$.ajax({
             type: 'post',
-            url: 'form.php',
+            url: '../php/back.php',
             data: $('form').serialize(),
             dataType:'JSON',
             success: function (result) {
+            	print(result);
                 if(result=="true"){
                 	print(result);
                 }
@@ -39,5 +41,6 @@ $(".log").click(function(){
             }
           });
 	}
+
 
 });
