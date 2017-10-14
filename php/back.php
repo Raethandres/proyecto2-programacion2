@@ -42,6 +42,20 @@
 				
 			// }
 		}
+		function Insert($form,string $tipo){
+			if($tipo=="logup"){
+				$sql = "INSERT INTO MyGuests (id , nombre, cedula , email, sexo , dire, telefono , user , pass)
+							VALUES ('1', '$form['nombre']','$form['cedula']','$form['email']','$form['sexo']','$form['dire']','$form['telefono']','$form['uname']','$form['pws']')";
+				if ($this->coon->query($sql) === TRUE) {
+    					echo json_encode(array("ok"=>"si"));
+				} else {
+    					echo json_encode(array("ok"=>"no"));
+				}
+
+				$this->coon->close();
+	
+			}
+		}
 	}
 	class Request
 	{
@@ -86,6 +100,9 @@
 					echo json_encode(array("ok"=>"denegado",));
 				}
 
+			}elseif ($this->form["crsf"]="logup") {
+				$user=$this->db->Insert($this->form,"logup");
+				# code...
 			}
 
 		}
