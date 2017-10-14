@@ -34,8 +34,9 @@ $(".log").click(function(){
             dataType:'JSON',
             success: function (result) {
             	print(result);
-                if(result=="true"){
+                if(result.ok=="entro"){
                 	print(result);
+                	print(result.row);
                 }
               
             }
