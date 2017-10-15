@@ -43,16 +43,33 @@
 			// }
 		}
 		function Insert($form,string $tipo){
+			// echo json_encode(array("ok"=>$form));
 			if($tipo=="logup"){
-				$sql = "INSERT INTO MyGuests (id , nombre, cedula , email, sexo , dire, telefono , user , pass)
-							VALUES ('1', '$form['nombre']','$form['cedula']','$form['email']','$form['sexo']','$form['dire']','$form['telefono']','$form['uname']','$form['pws']')";
-				if ($this->coon->query($sql) === TRUE) {
-    					echo json_encode(array("ok"=>"si"));
-				} else {
-    					echo json_encode(array("ok"=>"no"));
-				}
+				
+				$id=1;
+				$nombre=$form['nombre'];
+				$cedula=(int)$form['cedula'];
+				$email= $form['email'];
+				$sexo=$form['sexo'];
+				$dire=$form['direccion'];
+				$telefono=(int)$form['telefono'];
+				$user=$form['username'];
+				$pass=$form['pass'];
+				$admin=0;
+				$apellido=$form['apellido'];
+				// echo json_encode(array("ok"=>$form));
 
-				$this->coon->close();
+				$sql = "INSERT INTO user (nombre,apellido, cedula , email, sexo , dire, telefono , user , pass,admin)
+						VALUES ('$nombre','$apellido','$cedula','$email','$sexo','$dire','$telefono','$user','$pass','$admin')";
+				$r=$this->coon->query($sql);
+				echo json_encode(array("ok"=>$r,"info"=>$form));
+
+				//  if ($this->coon->query($sql) === TRUE) {
+   	// 				echo json_encode(array("ok"=>"si"));
+				//  } else {
+    // 				echo json_encode(array("ok"=>"no"));
+				// }
+		
 	
 			}
 		}
@@ -90,7 +107,7 @@
 		}
 
 		function Post(){
-			if ($this->form["crsf"]="login") {
+			if ($this->form["crsf"]=="login") {
 				// echo json_encode(array("ok"=>$this->form["uname"],));
 				$user=$this->db->Select($this->form["uname"]);
 				
@@ -100,9 +117,9 @@
 					echo json_encode(array("ok"=>"denegado",));
 				}
 
-			}elseif ($this->form["crsf"]="logup") {
+			}elseif ($this->form["crsf"]=="logup") {
+				//echo json_encode(array("ok"=>$this->form));
 				$user=$this->db->Insert($this->form,"logup");
-				# code...
 			}
 
 		}

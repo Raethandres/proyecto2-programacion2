@@ -14,14 +14,14 @@
     		</button>
     	<div class="dropdown-content">
     		<div class="container">
-          <form> <!--solo agrefue aqui un form y le puse una clase al boton para el evento -->
+          <form id="login">
             <label><b>Username</b></label>
             <input type="text" placeholder="Enter Username" name="uname" required>
 
             <label><b>Password</b></label>
             <input type="password" placeholder="Enter Password" name="psw" required>
             <input type="hidden" name="crsf" value="login"/>
-            <a class="log" type="submit">Login</a>
+            <a class="btn" id="send" type="submit">Login</a>
           </form>
     			
   			</div>
@@ -30,8 +30,8 @@
     	</div>
   	</div>
   		
- 		<a href="#news">signup</a>
-  		<a href="#home">about</a>
+ 		<a class="btn-logup">signup</a>
+  		<a href="#home" id="tik">about</a>
   		<label class="logo">logo</label>
   		<a class="logo">empreza</a>
 	</div>
@@ -39,41 +39,9 @@
 	
 
 	<!-- Sing In -->
-<!-- 	<section id="sign-up">
-	<header>
-		<h1>Registration Form</h1>
-	</header>
-	<div class="container"">
-		<div class="row">
-			<form>
-				<input type="text" name="nombre" id="id_nombre" required="" maxlength="20" placeholder="First Name" class="col-6 arreglos">
-				<input type="text" name="apellido" id="id_apellido" required="" maxlength="20" placeholder="Last Name" class="col-6 arreglos">
-				<select name="c" id="c" class="select-cedula">
-					<option value="c_vacio" selected> </option>
-					<option value="V">V</option>
-					<option value="E">E</option>
-					<option value="P">P</option>
-				</select>
-				<input type="number" name="cedula" id="id_cedula" required  placeholder="Cedula de identidad" class="col-select arreglos"/>
-				<select name="sexo" id="id_sexo" class="col-select arreglos select-especial">
-					<option value="sexo_vacio" selected>Select Gender</option>
-					<option value="masculino">Masculino</option>
-					<option value="femenino">Femenino</option>
-				</select>
-				<input type="text" name="direccion" id="id_direccion" required="" maxlength="60" placeholder="direccion" class="col-6 arreglos">
-				<input type="text" name="email" id="id_email" required="" maxlength="20" placeholder="Email Addres" class="col-6 arreglos">
-				<input type="number" name="telefono" id="id_telefono" required="" placeholder="Phone" class="col-6 arreglos">
-				<input type="text" name="username" id="id_username" required="" maxlength="20" placeholder="User Name" class="col-6 arreglos">
-				<input type="password" name="pass" id="id_pass" required="" maxlength="20" placeholder="Password" class="col-6 arreglos">
-				
-                
-				<a class="btn"><strong>Register</strong></a>
-			</form>
-		</div>
-	</div>
-	</section>
+	
 
-	<!-- Event -->
+	<!-- Event
 <!-- 	<section id="event">
 	<header>
 		<h1>Registration Boleto</h1>
@@ -101,7 +69,7 @@
 			</form>
 		</div>
 	</div>	
-	</section> --> -->
+	</section> --> 
 
  
   <div id="contenido">

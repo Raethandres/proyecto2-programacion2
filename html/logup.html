@@ -1,0 +1,54 @@
+<section id="sign-up">
+	<header>
+		<h1>Registration Form</h1>
+	</header>
+	<div class="container"">
+		<div class="row">
+			<form id="logup">
+				<input type="text" name="nombre" id="id_nombre" required="" maxlength="20" placeholder="First Name" class="col-6 arreglos">
+				<input type="text" name="apellido" id="id_apellido" required="" maxlength="20" placeholder="Last Name" class="col-6 arreglos">
+				<select name="c" id="c" class="select-cedula">
+					<option value="c_vacio" selected> </option>
+					<option value="V">V</option>
+					<option value="E">E</option>
+					<option value="P">P</option>
+				</select>
+				<input type="number" name="cedula" id="id_cedula" required  placeholder="Cedula de identidad" class="col-select arreglos"/>
+				<select name="sexo" id="id_sexo" class="col-select arreglos select-especial">
+					<option value="sexo_vacio" selected>Select Gender</option>
+					<option value="masculino">Masculino</option>
+					<option value="femenino">Femenino</option>
+				</select>
+				<input type="text" name="direccion" id="id_direccion" required="" maxlength="60" placeholder="direccion" class="col-6 arreglos">
+				<input type="text" name="email" id="id_email" required="" maxlength="20" placeholder="Email Addres" class="col-6 arreglos">
+				<input type="number" name="telefono" id="id_telefono" required="" placeholder="Phone" class="col-6 arreglos">
+				<input type="text" name="username" id="id_username" required="" maxlength="20" placeholder="User Name" class="col-6 arreglos">
+				<input type="password" name="pass" id="id_pass" required="" maxlength="20" placeholder="Password" class="col-6 arreglos">
+				<input type="hidden" name="crsf" value="logup"/>
+                
+				<a class="btn" id="send-up" ><strong>Register</strong></a>
+			</form>
+		</div>
+	</div>
+	</section>
+<section id="listo">
+	<header>
+		<h1>listo</h1>
+	</header>
+	<div class="container"">
+		<div class="row">
+			<form id="logup">
+				<label tid="id_nombre" class="col-6 arreglos"></label>
+				<label id="id_apellido" class="col-6 arreglos"></label>
+				<label id="id_cedula" class="col-select arreglos"></label>
+				<label id="id_direccion" class="col-6 arreglos"></label>
+				<label id="id_email" class="col-6 arreglos"></label>
+				<label id="id_telefono" class="col-6 arreglos"></label>
+				<label id="id_username" class="col-6 arreglos"></label>
+				<label id="id_pass"class="col-6 arreglos">
+                
+				<a class="btn" id="send-up" ><strong>login</strong></a>
+			</form>
+		</div>
+	</div>
+</section>
