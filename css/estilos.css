@@ -3,6 +3,8 @@ COLORES
 GRIS: #424242;
 NARANJA: #fa6a31;
 AMARILLO: #ffcd55;
+
+DORADO: #FFB900;
 */
 body{
   height: 100%;
@@ -21,7 +23,7 @@ body{
 :root {
   --color-principal: #424242;
   --color-secundario: #fa6a31;
-  --color-terciario: #ffcd55;
+  --color-terciario: #FFB900;
 }
 .row {
   display: -ms-flexbox;
@@ -110,7 +112,7 @@ body{
   border: none;
   outline: none;
   color: white;
-  padding: 14px 16px;
+  padding: 17px 16px;
   background-color: inherit;
 }
 
@@ -336,3 +338,51 @@ input, .select-especial{
 }
 
 /********************************************************************/
+/*******************Stilos de Home - Tables - navbar*************************************/
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+table thead tr th{
+  background-color: var(--color-principal);
+  color: #fff;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+.table-hover tbody tr:hover {
+  background-color: rgba(0, 0, 0, 0.075);
+}
+/*
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+*/
+.home-user img{
+  width: 35px;
+  vertical-align: middle;
+}
+.dropdown .home-user {
+  padding: 8px 16px !important;
+}
+#home header{
+  width: 100%;
+  height: auto;
+  margin-bottom: 20px;
+  vertical-align: middle;
+  background-color: var(--color-terciario);
+  text-align: center;
+}
+#home header h1{
+  vertical-align: middle;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  color: #FFF;
+  text-align: center;
+  font-size: 2em;
+}
+/******************************************************************/
