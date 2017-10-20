@@ -160,9 +160,9 @@ a .logo :hover{
   background-color: #f9f9f9;
 }
 /* Show the dropdown menu on hover */
-/*.dropdown:hover .dropdown-content {
+.dropdown:hover .dropdown-content {
   display: block;
-} */
+}
 
 
 input[type=text], input[type=password] {
@@ -402,5 +402,16 @@ padding: 0px !important;
 .home .dropdown-content a:hover{
   background-color: var(--color-secundario);
   color: #fff;
+}
+#home .container .btn{
+  padding-left: 0px !important;
+  border-color: var(--color-terciario) !important;
+  background-color: var(--color-terciario) !important;
+  width: 20% !important;
+}
+#home .container .btn:hover{
+  border-color: var(--color-terciario) !important;
+  background-color: #fff !important;
+  color: #000 !important;
 }
 /******************************************************************/
