@@ -20,7 +20,9 @@
 			$this->conexion();
 		}
 		function conexion(){
+			
 			$this->coon = new mysqli($this->servername, $this->username, $this->password,$this->dbname);
+			
 // Check connection
 			if ($this->coon->connect_error) {
     			echo json_encode(array("ok"=>"conection fail",));
@@ -28,14 +30,17 @@
 		}
 		function Select(string $data){
 			$data="\"$data\"";
-			$sql="SELECT * FROM user WHERE uname=$data";
+			$sql="SELECT * FROM user WHERE user=$data";
 			$result=$this->coon->query($sql);
+
 			if ($result->num_rows > 0) {
-				return $row = $result->fetch_assoc();
+				mysqli_close($this->coon);
+				return json_encode(array("ok"=>"entro","row"=>$result->fetch_assoc()));
     			
     			
     		}else{
-    			echo json_encode(array("ok"=>"no","sql"=>$sql));
+    			mysqli_close($this->coon);
+    			return json_encode(array("ok"=>"no-entro","row"=>"no"));
     		}			
 			
 			// if($conn->query($sql)){
@@ -62,6 +67,7 @@
 				$sql = "INSERT INTO user (nombre,apellido, cedula , email, sexo , dire, telefono , user , pass,admin)
 						VALUES ('$nombre','$apellido','$cedula','$email','$sexo','$dire','$telefono','$user','$pass','$admin')";
 				$r=$this->coon->query($sql);
+				mysqli_close($this->coon);
 				echo json_encode(array("ok"=>$r,"info"=>$form));
 
 				//  if ($this->coon->query($sql) === TRUE) {
@@ -108,14 +114,15 @@
 
 		function Post(){
 			if ($this->form["crsf"]=="login") {
+
 				// echo json_encode(array("ok"=>$this->form["uname"],));
 				$user=$this->db->Select($this->form["uname"]);
-				
-				if ($user["pass"]==$this->form["psw"]) {
-					echo json_encode(array("ok"=>"entro","row"=>$user));
-				}else{
-					echo json_encode(array("ok"=>"denegado",));
-				}
+				echo $user;
+				// if ($user["pass"]==$this->form["psw"]) {
+				// 	echo json_encode(array("ok"=>"entro","row"=>$user));
+				// }else{
+				// 	echo json_encode(array("ok"=>"denegado",));
+				// }
 
 			}elseif ($this->form["crsf"]=="logup") {
 				//echo json_encode(array("ok"=>$this->form));

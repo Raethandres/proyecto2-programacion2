@@ -26,9 +26,11 @@ $(".dropdown").click(function(){
 
 
 $(".btn-logup").click(function(){
-		$("#contenido").load('../html/logup.html #sign-up');
-		$("#contenido").on('click',"#send-up",function(){
+  print("asas");
+		$("#c").load('html/logup.html #sign-up');
+		$("#c").on('click',"#send-up",function(){
 			print("ss");
+      
 			$.ajax({
             type: 'post',
             url: '../php/back.php',
