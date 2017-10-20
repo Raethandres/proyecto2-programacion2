@@ -367,7 +367,7 @@ tr:nth-child(even) {
   vertical-align: middle;
 }
 .dropdown .home-user {
-  padding: 8px 16px !important;
+  padding: 8.5px 16px !important;
 }
 #home header{
   width: 100%;
@@ -384,5 +384,23 @@ tr:nth-child(even) {
   color: #FFF;
   text-align: center;
   font-size: 2em;
+}
+.dropdown-content{
+
+margin: 0px !important;
+padding: 0px !important;
+}
+.dropdown-content a {
+  float: none;
+  color: #fff;
+  background-color: var(--color-principal);
+  padding: 12px 5px;
+  text-decoration: none;
+  display: block;
+  text-align: center;
+}
+.home .dropdown-content a:hover{
+  background-color: var(--color-secundario);
+  color: #fff;
 }
 /******************************************************************/
