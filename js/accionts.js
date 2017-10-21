@@ -1,5 +1,5 @@
 function print(arg){
-	console.log(arg);
+  console.log(arg);
 };
 
 
@@ -40,15 +40,19 @@ $(".btn-logup").click(function(){
             	print(result);
                 if(result.ok=="entro"){
                 	print(result);
-                	print(result.row);
-                		$("#id_nombre").html(result.row.nombre);
-						$("#id_apellido").html(result.row.apellido);
-						$("#id_cedula").html(result.row.cedula);
-						$("#id_direccion").html(result.row.direccion);
-						$("#id_email").html(result.row.email);
-						$("#id_telefono").html(result.row.telefono);
-						$("#id_username").html(result.row.username);
-						$("#id_pass").html(result.row.pass);
+                  print("sige");
+                  // $("#c").load('html/listo.html');
+                  print("sige");
+                
+                		$("#id_nombre").html(result.info.nombre);
+						        $("#id_apellido").html(result.info.apellido);
+						        $("#id_cedula").html(result.info.cedula);
+						        $("#id_direccion").html(result.info.direccion);
+						        $("#id_email").html(result.info.email);
+						        $("#id_telefono").html(result.info.telefono);
+						        $("#id_username").html(result.info.username);
+						        $("#id_pass").html(result.info.pass);
+                  print("sige");
                 	
 
           			// print(result.row);
@@ -78,13 +82,8 @@ $(".btn-logup").click(function(){
             success: function (result) {
             	print(result);
                 if(result.ok=="entro"){
-                	print(result);
-                	print(result.row);
-                	$("#contenido").load('../html/user.html');
-          			print(result.row);
-          			$("#tik").html(result.row.nombre);
-          			$("#usul").html(result.row.nombre);
-          			$(".dropdown-content").css({display: 'none'});
+                	location.href="/html/user.html";
+
 
 
                 }

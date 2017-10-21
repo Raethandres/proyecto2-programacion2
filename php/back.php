@@ -1,5 +1,5 @@
 <?php
-
+	session_start();
 	/**
 	* 
 	*/
@@ -28,19 +28,45 @@
     			echo json_encode(array("ok"=>"conection fail",));
 			}
 		}
-		function Select(string $data){
+		function Select($data,string $tipo,string $table,string $spec){
+			if ($spec!="0") {
+				$result=$this->coon->query($spec);
+
+				if ($result->num_rows > 0) {
+					mysqli_close($this->coon);
+					$row=array();
+					$x=0;
+					while ($x!=$result->num_rows) {
+						$row[$x]=$result->fetch_assoc();
+						$x+=1;
+				}
+					return array("ok"=>"entro","row"=>$row,"nr"=>$result->num_rows );
+    			
+    			
+    			}else{
+    				mysqli_close($this->coon);
+    				return array("ok"=>"no-entro","row"=>"no");
+    			}			
+
+			}
 			$data="\"$data\"";
-			$sql="SELECT * FROM user WHERE user=$data";
+			$sql="SELECT * FROM $table WHERE $tipo=$data";
 			$result=$this->coon->query($sql);
 
 			if ($result->num_rows > 0) {
 				mysqli_close($this->coon);
-				return json_encode(array("ok"=>"entro","row"=>$result->fetch_assoc()));
+				$row=array();
+				$x=0;
+				while ($x!=$result->num_rows) {
+					$row[$x]=$result->fetch_assoc();
+					$x+=1;
+				}
+				return array("ok"=>"entro","row"=>$row,"nr"=>$result->num_rows );
     			
     			
     		}else{
     			mysqli_close($this->coon);
-    			return json_encode(array("ok"=>"no-entro","row"=>"no"));
+    			return array("ok"=>"no-entro","row"=>"no");
     		}			
 			
 			// if($conn->query($sql)){
@@ -77,6 +103,19 @@
 				// }
 		
 	
+			}elseif ($tipo=="volet") {
+				$serial=$form['serial'];
+				$evento=$form['evento'];
+				$fecha= $form['fecha'];
+				$ubicacion=$form['ubicacion'];
+				// echo json_encode(array("ok"=>$form));
+
+				$sql = "INSERT INTO voleto (serial,evento, fecha , ubicacion,)
+						VALUES ('$serial','$evento','$fecha','$ubicacion')";
+				$r=$this->coon->query($sql);
+				//aqui selecciona eventos, relaciona, luego creas un registro,relaciona y cierra
+				mysqli_close($this->coon);
+				echo json_encode(array("ok"=>$r,"info"=>$form));
 			}
 		}
 	}
@@ -97,6 +136,8 @@
 			// echo json_encode(array("ok"=>$this->form,));
 			if($this->tipo=="Post"){
 				$this->Post();
+			}elseif ($this->tipo=="Get") {
+				$this->Get();
 			}
 			// var_dump(tipo);
 			// fu=$this->func[$this->tipo];
@@ -109,15 +150,28 @@
 		} 
 
 		function Get(){
-
+			if ($this->form["crsf"]=="chus") {
+				$user=$this->db->Select($this->form["id"],"id","user","0");
+				if ($user["ok"]=="entro") {
+					
+					$_SESSION["user"]=$user["row"][0]["id"];
+				}
+				
+				echo json_encode($user);
+			}
 		}
 
 		function Post(){
 			if ($this->form["crsf"]=="login") {
 
 				// echo json_encode(array("ok"=>$this->form["uname"],));
-				$user=$this->db->Select($this->form["uname"]);
-				echo $user;
+				$user=$this->db->Select($this->form["uname"],"user","user","0");
+				if ($user["ok"]=="entro") {
+					
+					$_SESSION["user"]=$user["row"][0]["id"];
+				}
+				
+				echo json_encode($user);
 				// if ($user["pass"]==$this->form["psw"]) {
 				// 	echo json_encode(array("ok"=>"entro","row"=>$user));
 				// }else{
@@ -127,6 +181,12 @@
 			}elseif ($this->form["crsf"]=="logup") {
 				//echo json_encode(array("ok"=>$this->form));
 				$user=$this->db->Insert($this->form,"logup");
+			}elseif ($this->form["crsf"]=="user") {
+				$user=$_SESSION["user"];
+				$regis=$this->db->Select($_SESSION["user"],"id_us","registros","SELECT ser,fecha,ubicacion,nom,nombre,apellido,id_vo,id_us FROM user A0, registros A1,voleto A2,evento A3 WHERE A0.id=$user and A1.id_us=A0.id and A2.id=A1.id_vo and A3.id=A1.id_eve");
+				echo json_encode($regis);
+			}elseif ($this->form["crsf"]=="volet") {
+				$user=$this->db->Insert($this->form,"volet");
 			}
 
 		}

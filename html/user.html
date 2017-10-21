@@ -1,12 +1,66 @@
-<section id="user">
-	<header>
-		<h1>Bienvenido<p id="usul">usuario</p></h1>
-	</header>
-	<div class="container"">
-		<div class="row">
-			<div style="width: 55%;">
-    	<img id="imagen1" class="zoom">
-    		</div>
-		</div>
+<!DOCTYPE html>
+<html>
+<head>
+
+	<meta charset="utf-8">
+  <link rel="icon" type="image/png" href="img/icon.png">
+	<title></title>
+	<link rel="stylesheet" type="text/css" href="../css/estilos.css">
+</head>
+<body>
+	 <div class="navbar" >
+	 <div class="dropdown home">
+    		<button class="dropbtn home-user">
+          <img src="../img/user.png" />
+    		</button>
+    	<div class="dropdown-content">
+            <a id="btn-logup" >Perfil</a>
+            <a id="btn-logout">Salir</a>
+    	</div>
+  	</div>
+  		
+ 		<a  id="user_n" ></a>
+  	<a href="#" class="logo">
+      <img src="../img/logo.png" class="zoom"/>
+    </a>
 	</div>
-</section>
+  <!-- Img  -->
+	
+
+	<!-- STable -->
+	
+
+
+
+
+ <div id="c">
+   <section id="home">
+	<header>
+		<h1>¡Bienvenido a Siket! <br> <p id="user_np">Miki</p></h1>
+	</header>
+	<div class="container">
+		<div class="row">
+      <table class="table-hover">
+        <thead>
+        <tr>
+          <th>Eventos</th>
+          <th>Boletos</th>
+          <th>Serial</th>
+          <th>Fecha</th>
+          <th>Ubicación</th>
+        </tr>
+        </thead>
+        
+      </table>
+		</div>
+  <br>
+  <a class="btn" id="cargar-boleto" type="submit"><strong>Cargar nuevo boleto</strong></a>
+	</div>
+  	
+	</section>
+
+ </div>
+<script type="text/javascript" src="../js/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="../js/user.js"></script>
+</body>
+</html>
