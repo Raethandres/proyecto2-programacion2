@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+	<meta charset="utf-8">
+  <link rel="icon" type="image/png" href="img/icon.png">
+	<title></title>
+	<link rel="stylesheet" type="text/css" href="../css/estilos.css">
+</head>
+<body>
+	 <div class="navbar" >
+	 <div class="dropdown home">
+    		<button class="dropbtn home-user">
+          <img src="../img/user.png" />
+    		</button>
+    	<div class="dropdown-content">
+            <a id="btn-logup" >Perfil</a>
+            <a id="btn-logout">Salir</a>
+    	</div>
+  	</div>
+  		
+ 		<a  id="user_n" ></a>
+  	<a href="#" class="logo">
+      <img src="../img/logo.png" class="zoom"/>
+    </a>
+	</div>
+  <!-- Img  -->
+	
+
+	<!-- STable -->
+	
+
+
+
+
+ <div id="c">
+   <section id="admin">
+	<header>
+		<h1>Zona del administador<br> <p id="user_np">¡Miki!</p></h1>
+	</header>
+	<div class="container">
+		<div class="row">
+      <h2>Listado de asistencia</h2>
+      <table class="table-hover">
+        <thead>
+        <tr>
+          <th>Nombre</th>
+          <th>Apellido</th>
+          <th>Cédula</th>
+          <th>Evento</th>
+          <th>Ubicación</th>
+          <th>Detalles</th>
+        </tr>
+        </thead>
+        <tbody>
+          <td>ajdka</td>
+          <td>sfss</td>
+          <td>22222</td>
+          <td>cadcadc</td>
+          <td>altos</td>
+          <td>
+            <a id="ver" alt="Ver registro">View</a>
+            <a id="edit" alt="Editar registro">Edit</a>
+            <a id="eliminar" alt="Eliminar registro">Clear</a>
+          </td>
+        </tbody>
+      </table>
+      <br>
+		</div>
+  <br>
+
+	</div>
+  	
+	</section>
+  <section id="registro-evento">
+    <div class="container">
+      <div class="row">
+        <form id="resgistro-evento">
+          <h2>Registro de Evento</h2>
+          <input type="text" name="evento" id="id_evento" required="" maxlength="40" placeholder="Name of event" class="row arreglos" value="" />
+          <input type="number" name="evento-altos" id="id_evento-altos" placeholder="Zona Altos" class="col-3 arreglos"/>
+          <input type="number" name="evento-medios" id="id_evento-medios" placeholder="Zona Medios" class="col-3 arreglos"/>
+          <input type="number" name="evento-vip" id="id_evento-vip" placeholder="Zona VIP" class="col-3 arreglos"/>
+          <input type="number" name="evento-platino" id="id_evento-platino" placeholder="Zona Platino" class="col-3 arreglos"/>
+          <a class="btn" id="cargar-evento" type="submit"><strong>Registrar evento</strong></a>
+        </form>
+      </div>
+    </div>
+  </section>
+
+
+ </div>
+<script type="text/javascript" src="../js/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="../js/user.js"></script>
+</body>
+</html>

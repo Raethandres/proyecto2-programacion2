@@ -285,10 +285,16 @@ input, .select-especial{
       flex: 0 0 49.79%;
   max-width: 49.79%;
 }
+.col-3{
+  -ms-flex: 0 0 24.69%;%;
+      flex: 0 0 24.69%;%;
+  max-width: 24.69%;%;
+
+}
 .btn{
   display: inline-block;
   padding: 6px 12px;
-  margin-bottom: 0;
+  margin-bottom: 10px;
   font-size: 14px;
   font-weight: normal;
   line-height: 1.42857143;
@@ -308,33 +314,11 @@ input, .select-especial{
   border-color: var(--color-secundario);
   background-color: var(--color-secundario);
   color: #fff;
-  width: 97.2%;
+  width: 20%;
 }
 #logup a:hover{
   background-color: #fff;
   color: #000;
-}
-.glyphicon{
-  width: 100px;
-  height: 16px;
-  position: relative;
-  top: 1px;
-  display: inline-block;
-  font-family: 'Glyphicons Halflings';
-  font-style: normal;
-  font-weight: 400;
-  line-height: 1;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-.glyphicon-calendar{
-  background-image: url("../img/calendario.png");
-  background-repeat: no-repeat;
-}
-@font-face {
-    font-family: 'Glyphicons Halflings';
-    src: url('../fonts/glyphicons-halflings-regular.eot');
-    src: url('../fonts/glyphicons-halflings-regular.eot?#iefix') format('embedded-opentype'), url('../fonts/glyphicons-halflings-regular.woff') format('woff'), url('../fonts/glyphicons-halflings-regular.ttf') format('truetype'), url('../fonts/glyphicons-halflings-regular.svg#glyphicons-halflingsregular') format('svg');
 }
 
 /********************************************************************/
@@ -357,11 +341,6 @@ td, th {
 .table-hover tbody tr:hover {
   background-color: rgba(0, 0, 0, 0.075);
 }
-/*
-tr:nth-child(even) {
-  background-color: #dddddd;
-}
-*/
 .home-user img{
   width: 35px;
   vertical-align: middle;
@@ -369,7 +348,7 @@ tr:nth-child(even) {
 .dropdown .home-user {
   padding: 8.5px 16px !important;
 }
-#home header{
+#home header,#admin header{
   width: 100%;
   height: auto;
   margin-bottom: 20px;
@@ -377,7 +356,7 @@ tr:nth-child(even) {
   background-color: var(--color-terciario);
   text-align: center;
 }
-#home header h1{
+#home header h1,#admin header h1{
   vertical-align: middle;
   padding-top: 10px;
   padding-bottom: 10px;
@@ -403,13 +382,37 @@ padding: 0px !important;
   background-color: var(--color-secundario);
   color: #fff;
 }
-#home .container .btn{
+#home .container .btn,#admin .container .btn{
   padding-left: 0px !important;
   border-color: var(--color-terciario) !important;
   background-color: var(--color-terciario) !important;
-  width: 20% !important;
 }
-#home .container .btn:hover{
+#home .container .btn:hover,#admin .container .btn:hover{
+  border-color: var(--color-terciario) !important;
+  background-color: #fff !important;
+  color: #000 !important;
+}
+#admin h2{
+  width: 100%;
+  margin-top: 0px;
+}
+#admin #ver,#admin #edit,#admin #eliminar, #btn-logup, #btn-logout{
+  cursor: pointer;
+}
+#admin #ver:hover{
+  color: green;
+}
+#admin #edit:hover{
+  color: blue;
+}
+#admin #eliminar:hover{
+  color: red;
+}
+#registro-evento .btn{
+  border-color: var(--color-terciario) !important;
+  background-color: var(--color-terciario) !important;
+}
+#registro-evento .btn:hover{
   border-color: var(--color-terciario) !important;
   background-color: #fff !important;
   color: #000 !important;
