@@ -38,22 +38,11 @@ $(".btn-logup").click(function(){
             dataType:'JSON',
             success: function (result) {
             	print(result);
-                if(result.ok=="entro"){
+                if(result.ok==true){
                 	print(result);
                   print("sige");
-                  // $("#c").load('html/listo.html');
-                  print("sige");
-                
-                		$("#id_nombre").html(result.info.nombre);
-						        $("#id_apellido").html(result.info.apellido);
-						        $("#id_cedula").html(result.info.cedula);
-						        $("#id_direccion").html(result.info.direccion);
-						        $("#id_email").html(result.info.email);
-						        $("#id_telefono").html(result.info.telefono);
-						        $("#id_username").html(result.info.username);
-						        $("#id_pass").html(result.info.pass);
-                  print("sige");
-                	
+                  
+                	location.reload();
 
           			// print(result.row);
           			// $("#tik").html(result.row.nombre);
@@ -82,9 +71,13 @@ $(".btn-logup").click(function(){
             success: function (result) {
             	print(result);
                 if(result.ok=="entro"){
-                	location.href="/html/user.html";
+                  if (result.row[0].admin==1) {
+                    location.href="/html/admin.html";
+                  }
+                	else{
+                    location.href="/html/user.html";
 
-
+                  }
 
                 }
               

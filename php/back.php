@@ -9,8 +9,8 @@
 	class DataBase 
 	{
 		public $servername = "localhost";
-		public $username = "raeth";
-		public $password = "1234";
+		public $username = "root";
+		public $password = "kara";
 		public $coon;
 		public $dbname = "siket";
 
@@ -155,6 +155,14 @@
 				
 			}
 		}
+		function Delete($vo,$wh){
+			$sql = "DELETE FROM registros WHERE id_vo=$vo";
+			$r=$this->coon->query($sql);
+			$sql = "DELETE FROM voleto WHERE id=$vo";
+			$r=$this->coon->query($sql);
+			mysqli_close($this->coon);
+			echo json_encode(array("ok"=>$r));
+		}
 	}
 	class Request
 	{
@@ -175,6 +183,8 @@
 				$this->Post();
 			}elseif ($this->tipo=="Get") {
 				$this->Get();
+			}elseif ($this->tipo=="Delete") {
+				$this->Delete();
 			}
 			// var_dump(tipo);
 			// fu=$this->func[$this->tipo];
@@ -214,6 +224,7 @@
 				if ($user["ok"]=="entro") {
 					
 					$_SESSION["user"]=$user["row"][0]["id"];
+					$_SESSION["adm"]=$user["row"][0]["admin"];
 				}
 				
 				echo json_encode($user);
@@ -228,17 +239,29 @@
 				$user=$this->db->Insert($this->form,"logup");
 			}elseif ($this->form["crsf"]=="user") {
 				$us=$_SESSION["user"];
+				if ($_SESSION["adm"]==1) {
+					$regis=$this->db->Select($_SESSION["user"],"id_us","registros","SELECT nombre,apellido,cedula,nom,ubicacion,id_vo FROM user A0 ,registros A1,voleto A2,evento A3 WHERE A1.id_us=A0.id and A2.id=A1.id_vo and A3.id=A1.id_eve");
+					$this->db->conexion();
+				$regis["ok"]="entro";
+				$regis["us"]=$this->db->Select($_SESSION["user"],"id","user","0");
+				echo json_encode($regis);
+				}else{
 				$regis=$this->db->Select($_SESSION["user"],"id_us","registros","SELECT ser,fecha,ubicacion,nom,nombre,apellido,id_vo,id_us FROM user A0, registros A1,voleto A2,evento A3 WHERE A0.id=$us and A1.id_us=A0.id and A2.id=A1.id_vo and A3.id=A1.id_eve");
 				$this->db->conexion();
 				$regis["ok"]="entro";
 				$regis["us"]=$this->db->Select($_SESSION["user"],"id","user","0");
 				echo json_encode($regis);
+			}
 			}elseif ($this->form["crsf"]=="volet") {
 				$user=$this->db->Insert($this->form,"volet");
 			}
 
 		}
-
+		function Delete(){
+			if ($this->form["crsf"]=="voleto") {
+				$user=$this->db->Delete($this->form["id_vo"],"volet");
+			}
+		}
 
 
 	}
@@ -249,9 +272,11 @@ if ($_POST) {
 
 }elseif ($_GET) {
 	$reg=new Request("Get",$_GET);
-}elseif ($_PUT) {
+}elseif ($_SERVER["REQUEST_METHOD"]=="PUT") {
+	parse_str(file_get_contents("php://input"),$_PUT);
 	$reg=new Request("Put",$_PUT);
-}elseif ($_DELETE) {
+}elseif ($_SERVER["REQUEST_METHOD"]=="DELETE") {
+	parse_str(file_get_contents("php://input"),$_DELETE);
 	$reg=new Request("Delete",$_DELETE);
 }else{
 	echo "nada";
