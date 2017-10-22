@@ -9,8 +9,8 @@
 	class DataBase 
 	{
 		public $servername = "localhost";
-		public $username = "root";
-		public $password = "kara";
+		public $username = "raeth";
+		public $password = "1234";
 		public $coon;
 		public $dbname = "siket";
 
@@ -48,6 +48,26 @@
     				return array("ok"=>"no-entro","row"=>"no");
     			}			
 
+			}if ($data=="*") {
+				$data="\"$data\"";
+				$sql="SELECT * FROM $table";
+				$result=$this->coon->query($sql);
+
+				if ($result->num_rows > 0) {
+					mysqli_close($this->coon);
+					$row=array();
+					$x=0;
+					while ($x!=$result->num_rows) {
+						$row[$x]=$result->fetch_assoc();
+						$x+=1;
+					}
+					return array("ok"=>"entro","row"=>$row,"nr"=>$result->num_rows );
+    			
+    			
+    			}else{
+    				mysqli_close($this->coon);
+    				return array("ok"=>"no-entro","row"=>"no");
+    			}	
 			}
 			$data="\"$data\"";
 			$sql="SELECT * FROM $table WHERE $tipo=$data";
@@ -108,14 +128,31 @@
 				$evento=$form['evento'];
 				$fecha= $form['fecha'];
 				$ubicacion=$form['ubicacion'];
+				$id_eve=0;
 				// echo json_encode(array("ok"=>$form));
-
-				$sql = "INSERT INTO voleto (serial,evento, fecha , ubicacion,)
-						VALUES ('$serial','$evento','$fecha','$ubicacion')";
+				$event=$this->Select($evento,"nom","evento","0");
+				$ev=$event["row"];
+				$this->conexion();
+				// echo json_encode(array("ok"=>$evento,"info"=>$event));
+				$sql = "INSERT INTO voleto (ser,fecha , ubicacion)
+						VALUES ('$serial','$fecha','$ubicacion')";
 				$r=$this->coon->query($sql);
+				$vol=$this->Select($serial,"ser","voleto","0");
+				$vo=$vol["row"];//fallo
+				// echo json_encode(array("ok"=>$vo[0]["id"],"info"=>$ev[0]["id"]));
+				$this->conexion();
+				$id_v=$vo[0]["id"];
+				$id_e=$ev[0]["id"];
+				$id_u=$_SESSION["user"];
+				$sql = "INSERT INTO registros (id_us,id_vo, id_eve)
+						VALUES ('$id_u','$id_v','$id_e')";//aqui
+				$r=$this->coon->query($sql);
+
 				//aqui selecciona eventos, relaciona, luego creas un registro,relaciona y cierra
 				mysqli_close($this->coon);
 				echo json_encode(array("ok"=>$r,"info"=>$form));
+				
+				
 			}
 		}
 	}
@@ -152,12 +189,20 @@
 		function Get(){
 			if ($this->form["crsf"]=="chus") {
 				$user=$this->db->Select($this->form["id"],"id","user","0");
-				if ($user["ok"]=="entro") {
+				// if ($user["ok"]=="entro") {
 					
-					$_SESSION["user"]=$user["row"][0]["id"];
-				}
+				// 	$_SESSION["user"]=$user["row"][0]["id"];
+				// }
 				
 				echo json_encode($user);
+			}
+			if ($this->form["crsf"]=="evento") {
+				$user=$this->db->Select("*","","evento","0");
+				
+				echo json_encode($user);
+			}elseif ($this->form["crsf"]=="out") {
+				$_SESSION["user"]=NULL;
+				echo json_encode(array('ok' =>"bye"));
 			}
 		}
 
@@ -182,8 +227,11 @@
 				//echo json_encode(array("ok"=>$this->form));
 				$user=$this->db->Insert($this->form,"logup");
 			}elseif ($this->form["crsf"]=="user") {
-				$user=$_SESSION["user"];
-				$regis=$this->db->Select($_SESSION["user"],"id_us","registros","SELECT ser,fecha,ubicacion,nom,nombre,apellido,id_vo,id_us FROM user A0, registros A1,voleto A2,evento A3 WHERE A0.id=$user and A1.id_us=A0.id and A2.id=A1.id_vo and A3.id=A1.id_eve");
+				$us=$_SESSION["user"];
+				$regis=$this->db->Select($_SESSION["user"],"id_us","registros","SELECT ser,fecha,ubicacion,nom,nombre,apellido,id_vo,id_us FROM user A0, registros A1,voleto A2,evento A3 WHERE A0.id=$us and A1.id_us=A0.id and A2.id=A1.id_vo and A3.id=A1.id_eve");
+				$this->db->conexion();
+				$regis["ok"]="entro";
+				$regis["us"]=$this->db->Select($_SESSION["user"],"id","user","0");
 				echo json_encode($regis);
 			}elseif ($this->form["crsf"]=="volet") {
 				$user=$this->db->Insert($this->form,"volet");

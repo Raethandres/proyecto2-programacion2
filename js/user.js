@@ -17,13 +17,15 @@ function crearTr(data){
 		da+=tdi+data[i].ubicacion+tde;
 		da+=tre;
 	}
-	
-	$(".table-hover").append("<tbody>"+da+"</tbody>");
-	print("sd");
+	if(da.length>1){
+    $(".table-hover").append("<tbody>"+da+"</tbody>");
+  print("sd");
 
-	$("tr").on('click',function(){
-		alert($(this).attr("id"));
-	});
+  $("tr").on('click',function(){
+    alert($(this).attr("id"));
+  });
+  }
+	
 	
 	// $(".table-hover").
 };
@@ -40,10 +42,14 @@ $(document).ready(function(){
             success: function (result) {
                 if(result.ok=="entro"){
                 	print(result);
-                	crearTr(result.row)
-                	$("#user_n").html(result.row[1].nombre);
-                	$("#user_np").html(result.row[1].nombre+" "+result.row[1].apellido);
-                	id=result.row[1].id_us;
+                	
+                	$("#user_n").html(result.us.row[0].nombre);
+                	$("#user_np").html(result.us.row[0].nombre+" "+result.us.row[0].apellido);
+                	id=result.us.row[0].id_us;
+                  if (result.row!="no") {
+                    crearTr(result.row)
+                  }
+                  
 
 
                 }
@@ -51,37 +57,80 @@ $(document).ready(function(){
             }
           });
 
-	$("#user_n").click(function(){
-		// if (!$("#c").children("#home")) {
-
-			$("#c").load('../html/home.html');
-			da="crsf=user";
-			$.ajax({
-			
-            type: 'post',
+  $("#btn-logout").click(function(){
+    var d="crsf=out";
+    $.ajax({
+            type: 'get',
             url: '../php/back.php',
-            data: da,
+            data:d,
             dataType:'JSON',
             success: function (result) {
-                if(result.ok=="entro"){
-                	print(result);
-                	crearTr(result.row)
-                	$("#user_n").html(result.row[1].nombre);
-                	$("#user_np").html(result.row[1].nombre+" "+result.row[1].apellido);
-                	id=result.row[1].id_us;
-
-
-                }
+              print(result);
+              location.href="..";
               
             }
           });
+
+  });
+	$("#user_n").click(function(){
+		// if (!$("#c").children("#home")) {
+      location.reload();
+			// $("#c").load('../html/home.html');
+			// da="crsf=user";
+			// $.ajax({
+			
+   //          type: 'post',
+   //          url: '../php/back.php',
+   //          data: da,
+   //          dataType:'JSON',
+   //          success: function (result) {
+   //              if(result.ok=="entro"){
+   //              	print(result);
+   //              	crearTr(result.row)
+   //              	$("#user_n").html(result.row[1].nombre);
+   //              	$("#user_np").html(result.row[1].nombre+" "+result.row[1].apellido);
+   //              	id=result.row[1].id_us;
+
+
+   //              }
+              
+   //          }
+   //        });
+
+
 		// }
 
 	});
 	$("#cargar-boleto").click(function(){
 		$("#c").load('../html/voletos.html');
+    var d="crsf=evento"
+    $.ajax({
+            type: 'get',
+            url: '../php/back.php',
+            data:d,
+            dataType:'JSON',
+            success: function (result) {
+              print(result);
+                if(result.ok=="entro"){
+              var tri="<option value=\"";
+              var tre="</option>";
+              
+              for (var i = 0; i < result.row.length; i++) {
+                var da="";
+                da+=tri+result.row[i].nom+"\"id=\""+result.row[i].id+"\" >";
+                da+=result.row[i].nom;
+                da+=tre;
+                $("#id_evento").append(da);
+                print("ev");
+                print(da);
+              }
+              
+                }
+              
+            }
+          });
 		$("#c").on('click',"#volet",function(){
-			print("ss");
+			print($('#vole').serialize());
       
 			$.ajax({
             type: 'post',

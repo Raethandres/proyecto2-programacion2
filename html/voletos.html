@@ -5,22 +5,18 @@
 	<div class="container">
 		<div class="row">
 			<form id="vole">
-				<input type="number" name="serial" id="id_serial" required="" placeholder="Serial del Boleto" class="col-6 arreglos">
+				<input type="text" name="serial" id="id_serial" required="" placeholder="Serial del Boleto" class="col-6 arreglos">
 				<input type="hidden" name="crsf" value="volet"/>
 				<select name="evento" id="id_evento" class="col-6 arreglos select-especial">
 					<option value="evento_vacio" selected>Select Event</option>
-					<option value="evento_1">Event 1</option>
-					<option value="evento_2">Event 2</option>
-					<option value="evento_3">Event 3</option>
-					<option value="evento_4">Event 4</option>
 				</select>
 				<input type="text" name="fecha" id="id_fecha" required="" maxlength="20" placeholder="DD/MM/YYYY" class="col-6 arreglos ">
                 <select name="ubicacion" id="id_ubicacion" class="col-6 arreglos select-especial">
 					<option value="evento_vacio" selected>Select Ubicacion</option>
-					<option value="evento_1">Altos</option>
-					<option value="evento_2">Medios</option>
-					<option value="evento_3">VIP</option>
-					<option value="evento_4">Platino</option>
+					<option value="Altos">Altos</option>
+					<option value="Medios">Medios</option>
+					<option value="VIP">VIP</option>
+					<option value="Platino">Platino</option>
 				</select>
 				<a class="btn" id="volet"><strong>Register Boleto</strong></a>
 			</form>
