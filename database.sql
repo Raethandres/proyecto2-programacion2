@@ -27,7 +27,7 @@ CREATE TABLE `evento` (
   `serial` varchar(8) DEFAULT NULL,
   `nom` varchar(20) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -36,7 +36,6 @@ CREATE TABLE `evento` (
 
 LOCK TABLES `evento` WRITE;
 /*!40000 ALTER TABLE `evento` DISABLE KEYS */;
-INSERT INTO `evento` VALUES (1,'23a1','mariqueras');
 /*!40000 ALTER TABLE `evento` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -59,7 +58,7 @@ CREATE TABLE `registros` (
   CONSTRAINT `registros_ibfk_1` FOREIGN KEY (`id_us`) REFERENCES `user` (`id`),
   CONSTRAINT `registros_ibfk_2` FOREIGN KEY (`id_vo`) REFERENCES `voleto` (`id`),
   CONSTRAINT `registros_ibfk_3` FOREIGN KEY (`id_eve`) REFERENCES `evento` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -68,8 +67,36 @@ CREATE TABLE `registros` (
 
 LOCK TABLES `registros` WRITE;
 /*!40000 ALTER TABLE `registros` DISABLE KEYS */;
-INSERT INTO `registros` VALUES (3,1,1,1),(4,1,2,1);
 /*!40000 ALTER TABLE `registros` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `ubicacion`
+--
+
+DROP TABLE IF EXISTS `ubicacion`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `ubicacion` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id_eve` int(11) DEFAULT NULL,
+  `altos` int(11) DEFAULT NULL,
+  `medios` int(11) DEFAULT NULL,
+  `vip` int(11) DEFAULT NULL,
+  `platino` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `id_eve` (`id_eve`),
+  CONSTRAINT `ubicacion_ibfk_1` FOREIGN KEY (`id_eve`) REFERENCES `evento` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `ubicacion`
+--
+
+LOCK TABLES `ubicacion` WRITE;
+/*!40000 ALTER TABLE `ubicacion` DISABLE KEYS */;
+/*!40000 ALTER TABLE `ubicacion` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -92,7 +119,7 @@ CREATE TABLE `user` (
   `pass` varchar(20) DEFAULT NULL,
   `admin` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -101,7 +128,7 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES (1,'andres','colmenares',24153697,'raethandres4@gmail.com','M','por ahi',4143792292,'Raethandres4','kara',1),(2,'armando','ortuño',24156978,'abdkadhabd','ma','hasghdadg',1254564321,'armando','1234',0),(3,'ess','ortuño',24156978,'abdkadhabd','ma','hasghdadg',1254564321,'mik','1234',0),(4,'asas','asdasd',23232,'adad','ma','assad',24234,'asd','asd',0),(5,'aaweawe','aeaeae',2234234,'sfsfsfd','ma','sdfsf',3453535,'sdfsdfsf','sdfsfd',0),(6,'sxvsdvdv','dsvsdv',234234,'sfsef','ma','wrwerwer',34242,'sfsf','sdf',0),(7,'dsdfsdf','sdfsdfsdf',34343,'dfgdfg','ma','dfgdfg',345645,'dfgdg','dfgfdg',0);
+INSERT INTO `user` VALUES (11,'andres','colmenares',24153697,'raethandres4@gmail.com','M','por ahi',4143792292,'Raethandres','kara',1),(12,'armando','ortuño',24153697,'kjh','ma','sndbfsfj',6787,'arm','mmmm',0),(13,'kevin','cortes',24153697,'kjh','ma','sndbfsfj',6787,'miki','nnnn',0),(14,'miller','nuñez',2455667,'jdkhkj','ma','jshfjkkk',3745,'mille','mmmm',0),(15,'miller','nuñez',2455667,'jdkhkj','ma','jshfjkkk',3745,'min','mmmm',0),(16,'veronica','parada',237756,'mndfb','ma','nbbndf',23843579,'vero','bbbb',0),(17,'daniel','ala',237465,'nbnb','ma','nnnbn',999999,'ala','bbbb',0),(18,'luzmar','alviares',223334,'bvbvbv','fe','bbvbvbv',101923,'eluz','mmmm',0);
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -118,7 +145,7 @@ CREATE TABLE `voleto` (
   `fecha` date DEFAULT NULL,
   `ubicacion` varchar(20) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=43 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -127,7 +154,6 @@ CREATE TABLE `voleto` (
 
 LOCK TABLES `voleto` WRITE;
 /*!40000 ALTER TABLE `voleto` DISABLE KEYS */;
-INSERT INTO `voleto` VALUES (1,'234da1','0000-00-00','maricoland'),(2,'23a1',NULL,NULL);
 /*!40000 ALTER TABLE `voleto` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -140,4 +166,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-10-21 14:03:31
+-- Dump completed on 2017-10-22 16:56:57

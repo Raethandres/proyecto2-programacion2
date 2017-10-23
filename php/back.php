@@ -150,10 +150,29 @@
 
 				//aqui selecciona eventos, relaciona, luego creas un registro,relaciona y cierra
 				mysqli_close($this->coon);
+				// echo json_encode(array("ok"=>$r,"info"=>$form));
+				
+				
+			}elseif ($tipo=="evento") {
+				$nombre=$form["evento"];
+				$platino=$form["evento-platino"];
+				$vip=$form["evento-vip"];
+				$medio=$form["evento-medios"];
+				$alto=$form["evento-altos"];
+				$sql = "INSERT INTO evento (nom,alto,medio,vip,platino)
+						VALUES ('$nombre','$alto','$medio','$vip','$platino')";
+				$r=$this->coon->query($sql);
+				mysqli_close($this->coon);
 				echo json_encode(array("ok"=>$r,"info"=>$form));
-				
-				
 			}
+		}
+		function Update($data,string $tipo,string $table,$place,$pla){
+
+			$sql="UPDATE $table SET $tipo=$data WHERE $place=\"$pla\"";
+			// echo json_encode(array("ok"=>$sql));
+			$r=$this->coon->query($sql);
+			mysqli_close($this->coon);
+			echo json_encode(array("ok"=>$r));
 		}
 		function Delete($vo,$wh){
 			$sql = "DELETE FROM registros WHERE id_vo=$vo";
@@ -254,6 +273,17 @@
 			}
 			}elseif ($this->form["crsf"]=="volet") {
 				$user=$this->db->Insert($this->form,"volet");
+				$this->db->conexion();
+				$r=$this->db->Select($this->form["evento"],"nom","evento","0");
+				// echo json_encode(array("r"=>$r));
+				$t=$r["row"]["0"][$this->form["ubicacion"]];
+				$t-=1;
+				// echo json_encode(array("r"=>$t));
+				$this->db->conexion();
+				$r=$this->db->Update($t,$this->form["ubicacion"],"evento","nom",$this->form["evento"]);
+				// echo json_encode(array("r"=>$r));
+			}elseif ($this->form["crsf"]=="evento") {
+				$user=$this->db->Insert($this->form,"evento");
 			}
 
 		}
