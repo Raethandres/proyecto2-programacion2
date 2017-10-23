@@ -348,7 +348,7 @@ td, th {
 .dropdown .home-user {
   padding: 8.5px 16px !important;
 }
-#home header,#admin header{
+#home header,#admin header, #registro-evento header{
   width: 100%;
   height: auto;
   margin-bottom: 20px;
@@ -356,7 +356,7 @@ td, th {
   background-color: var(--color-terciario);
   text-align: center;
 }
-#home header h1,#admin header h1{
+#home header h1,#admin header h1, #registro-evento header h1{
   vertical-align: middle;
   padding-top: 10px;
   padding-bottom: 10px;
@@ -382,7 +382,7 @@ padding: 0px !important;
   background-color: var(--color-secundario);
   color: #fff;
 }
-#home .container .btn,#admin .container .btn{
+#home .container .btn,#admin .container .btn,{
   padding-left: 0px !important;
   border-color: var(--color-terciario) !important;
   background-color: var(--color-terciario) !important;
@@ -392,11 +392,11 @@ padding: 0px !important;
   background-color: #fff !important;
   color: #000 !important;
 }
-#admin h2{
+#admin h2, #registro-evento h2{
   width: 100%;
   margin-top: 0px;
 }
-#admin #ver,#admin #edit,#admin #eliminar, #btn-logup, #btn-logout{
+#admin #ver,#admin #edit,#admin #eliminar, #btn-logup, #btn-logout,#evento{
   cursor: pointer;
 }
 #admin #ver:hover{

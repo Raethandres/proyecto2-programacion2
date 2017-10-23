@@ -228,6 +228,28 @@ $(document).ready(function(){
               
             }
           });
+  //Carga html del registro de evento-Admin
+  $("#evento").click(function(){
+      print("Entro a evento registro");
+      var da="id="+id+"&crsf=chus"
+      print(da)
+    $("#c").load('../html/evento.html #registro-event');
+    $.ajax({
+            type: 'get',
+            url: '../php/back.php',
+            data:da,
+            dataType:'JSON',
+            success: function (result) {
+              print(result);
+                if(result.ok=="entro"){
+                  print(result);
+                  print("sige");
+
+
+                }
+              
+            }
+          });
 		$("#c").on('click',"#send-up",function(){
 			print("ss");
       
