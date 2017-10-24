@@ -28,7 +28,7 @@ function crearTr(data){
     da+=tdi+data[i].ser+tde;
     da+=tdi+data[i].fecha+tde;
     da+=tdi+data[i].ubicacion+tde;
-    da+="<td id=\""+data[i].id_vo+"\"><a id=\"ver\" alt=\"Ver registro\">View</a><a id=\"edit\" alt=\"Editar registro\">Edit</a><a id=\"eliminar\" alt=\"Eliminar registro\">Clear</a></td>";
+    da+="<td id=\""+data[i].id_vo+"\"><a id=\"ver\" alt=\"Ver registro\">View</a><a id=\"edit\" alt=\"Editar registro\">Edit</a></td>";
     da+=tre;
   }
 }
@@ -188,9 +188,8 @@ $(document).ready(function(){
             dataType:'JSON',
             success: function (result) {
             	print(result);
-                if(result.ok=="entro"){
-                	print(result);
-                  print("sige");
+                if(result.ok==true){
+                	$("h1").append("<br>exitoso");
                   
 
 

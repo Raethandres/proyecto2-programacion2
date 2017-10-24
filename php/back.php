@@ -275,7 +275,7 @@
 				$user=$this->db->Insert($this->form,"volet");
 				$this->db->conexion();
 				$r=$this->db->Select($this->form["evento"],"nom","evento","0");
-				// echo json_encode(array("r"=>$r));
+				// echo json_encode(array("r"=>$this->form);
 				$t=$r["row"]["0"][$this->form["ubicacion"]];
 				$t-=1;
 				// echo json_encode(array("r"=>$t));
