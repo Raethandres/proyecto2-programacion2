@@ -20,18 +20,7 @@ function crearTr(data){
     da+=tre;
     
   }
-  }else{
-  for (var i = 0; i < data.length; i++) {
-    da+=tri+data[i].id_vo+">";
-    da+=tdi+data[i].nom+tde;
-    da+=tdi+"1"+tde;
-    da+=tdi+data[i].ser+tde;
-    da+=tdi+data[i].fecha+tde;
-    da+=tdi+data[i].ubicacion+tde;
-    da+="<td id=\""+data[i].id_vo+"\"><a id=\"ver\" alt=\"Ver registro\">View</a><a id=\"edit\" alt=\"Editar registro\">Edit</a></td>";
-    da+=tre;
   }
-}
 	
 	if(da.length>1){
     $(".table-hover").append("<tbody>"+da+"</tbody>");
@@ -43,6 +32,85 @@ function crearTr(data){
     print(d);
     $.ajax({
             type: 'delete',
+            url: '../php/back.php',
+            data:d,
+            dataType:'JSON',
+            success: function (result) {
+              print(result);
+              location.reload();
+              
+            }
+          });
+  });
+
+  $("tr #edit").on('click',function(){
+    var mas=$(this).parent().attr("id");
+    // var m=$("#"+mas).parent().attr("id");
+    var d="id_vo="+mas+"&crsf=voleto";
+    $("#c").load('../html/voletos.html');
+    $.ajax({
+            type: 'get',
+            url: '../php/back.php',
+            data:d,
+            dataType:'JSON',
+            success: function (result) {
+              print(result);
+              print("pu");
+                if(result.ok=="entro"){
+                  print(result);
+                  // print("sige");
+                  
+                  var tri="<option value=\"";
+                  var tre="</option>";
+                  for (var i = 0; i < result.vol.length; i++) {
+                    var da="";
+                    da+=tri+result.vol[i].nom+"\"id=\""+result.vol[i].id+"\" >";
+                    da+=result.vol[i].nom;
+                    da+=tre;
+                    $("#id_evento").append(da);
+                    print("ev");
+                    print(da);
+              }
+                  $("#id_serial").val(result.row[0].ser);
+                  $("#id_evento").val(result.row[0].nom);
+                  $("#id_fecha").val(result.row[0].fecha);
+                  $("#id_ubicacion").val(result.row[0].ubicacion);
+                  $("#id_evento").val(result.row[0].nom);
+                
+
+                }
+              
+            }
+          });
+      $("#c").on('click',"#volet",function(){
+      print($('#vole').serialize());
+      
+      $.ajax({
+            type: 'put',
+            url: '../php/back.php',
+            data:$('#vole').serialize(),
+            dataType:'JSON',
+            success: function (result) {
+              print(result);
+                if(result.ok==true){
+                  $("h1").append("<br>exitoso");
+                  $('#vole')[0].reset();
+                  
+
+
+                }
+              
+            }
+          });
+    });
+  });
+  $("tr #ver").on('click',function(){
+    var mas=$(this).parent().attr("id");
+    // var m=$("#"+mas).parent().attr("id");
+    var d="id_vo="+mas+"&crsf=voleto";
+    print(d);
+    $.ajax({
+            type: 'get',
             url: '../php/back.php',
             data:d,
             dataType:'JSON',
@@ -245,7 +313,7 @@ $(document).ready(function(){
               print(result);
                 if(result.ok==true){
                   location.reload();
-                  $("h1").append("<br><p>guardado exitoso</p>");
+                  $("h1").html("guardado exitoso");
 
                 // print(result.row);
                 // $("#tik").html(result.row.nombre);

@@ -81,7 +81,7 @@ $(".btn-logup").click(function(){
 
                 }else{
                   if (sw==0) {
-                    $("label").append("<strong class=\"rojo\"> *Incorrecto </strong>");
+                    $("label").append("<strong style=\" color :red;\"> *Incorrecto </strong>");
                     sw=1;
                   }else{
                     $("label").append(" ");

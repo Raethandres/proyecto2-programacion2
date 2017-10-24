@@ -167,11 +167,14 @@
 			}
 		}
 		function Update($data,string $tipo,string $table,$place,$pla){
-			$us=
-			$sql="UPDATE $table SET $tipo=$data WHERE $place=\"$pla\"";
+			$us="\"$data\"";
+			$sql="UPDATE $table SET $tipo=$us WHERE $place=$pla";
 			// echo json_encode(array("ok"=>$sql));
 			$r=$this->coon->query($sql);
 			mysqli_close($this->coon);
+			return $r;
+			
+			
 			
 		}
 		function Delete($vo,$wh){
@@ -215,17 +218,37 @@
 
 		function Put(){
 			if ($this->form["crsf"]=="logup") {
-				$us=$this->db->Select($_SESSION["user"],"id_us","registros","0");
-				echo json_encode(array("ok"=>$us));
-				// $r=$this->db->Update($t,$this->form["nombre"],"user","id",$_SESSION["user"]);
+				
+				$u=$_SESSION["user"];
+				
+				$r;
+				foreach ($this->form as $x  => $value) {
+					$r=$this->db->Update($value,$x,"user","id",$u);
+					$this->db->conexion();
+				}
+				echo json_encode(array("ok"=>true));
 
+			}elseif ($this->form["crsf"]=="voleto") {
+				$u=$_SESSION["user"];
+				
+				$r=$this->db->Update($this->form["serial"],"ser","voleto","id",$this->form["id_vo"]);
+				$this->db->conexion();
+				$r=$this->db->Update($this->form["fecha"],"fecha","voleto","id",$this->form["id_vo"]);
+				$this->db->conexion();
+				$r=$this->db->Update($this->form["ubicacion"],"ubicacion","voleto","id",$this->form["id_vo"]);
+				$this->db->conexion();
+				$r=$this->db->Select($id_vo,"id","registros","0");
+				$this->db->conexion();
+				$d=$this->db->Update($this->form["id_evento"],"id_eve","registros","id",$r["row"][0]["id"]);
+		
+				echo json_encode(array("ok"=>true));
 			}
 
 		} 
 
 		function Get(){
 			if ($this->form["crsf"]=="chus") {
-				$user=$this->db->Select($this->form["id"],"id","user","0");
+				$user=$this->db->Select($_SESSION["user"],"id","user","0");
 				// if ($user["ok"]=="entro") {
 					
 				// 	$_SESSION["user"]=$user["row"][0]["id"];
@@ -240,6 +263,12 @@
 			}elseif ($this->form["crsf"]=="out") {
 				$_SESSION["user"]=NULL;
 				echo json_encode(array('ok' =>"bye"));
+			}elseif ($this->form["crsf"]=="voleto") {
+				$user=$this->db->Select($this->form["id_vo"],"id","voleto","SELECT ser,fecha,ubicacion,nom FROM registros A1,voleto A2,evento A3 WHERE A2.id=A1.id_vo and A3.id=A1.id_eve");
+				$this->db->conexion();
+				$usss=$this->db->Select("*","","evento","0");
+				$user["vol"]=$usss["row"];
+				echo json_encode($user);
 			}
 		}
 
@@ -248,10 +277,13 @@
 
 				// echo json_encode(array("ok"=>$this->form["uname"],));
 				$user=$this->db->Select($this->form["uname"],"user","user","0");
-				if ($user["ok"]=="entro") {
+				if ($user["ok"]=="entro" && $user["row"][0]["pass"]==$this->form["pass"]) {
 					
 					$_SESSION["user"]=$user["row"][0]["id"];
 					$_SESSION["adm"]=$user["row"][0]["admin"];
+				}else{
+					$user["ok"]="negado";
+					// $user["row"]="";
 				}
 				
 				echo json_encode($user);
@@ -289,7 +321,7 @@
 				// echo json_encode(array("r"=>$t));
 				$this->db->conexion();
 				$r=$this->db->Update($t,$this->form["ubicacion"],"evento","nom",$this->form["evento"]);
-				echo json_encode(array("ok"=>$r));
+				echo json_encode(array("ok"=>true));
 			}elseif ($this->form["crsf"]=="evento") {
 				$user=$this->db->Insert($this->form,"evento");
 			}
