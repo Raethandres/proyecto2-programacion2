@@ -276,9 +276,9 @@ input, .select-especial{
   padding-left: 15px;
 }
 .col-select {
-  -ms-flex: 0 0 22.753%;
-      flex: 0 0 22.753%;
-  max-width: 22.753%;
+  -ms-flex: 0 0 21.753%;
+      flex: 0 0 21.753%;
+  max-width: 21.753%;
 }
 .col-6 {
   -ms-flex: 0 0 49.79%;
