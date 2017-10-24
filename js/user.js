@@ -20,6 +20,17 @@ function crearTr(data){
     da+=tre;
     
   }
+  }else{
+     for (var i = 0; i < data.length; i++) {
+      da+=tri+data[i].id_vo+">";
+      da+=tdi+data[i].nom+tde;
+      da+=tdi+"1"+tde;
+      da+=tdi+data[i].ser+tde;
+      da+=tdi+data[i].fecha+tde;
+      da+=tdi+data[i].ubicacion+tde;
+      da+="<td id=\""+data[i].id_vo+"\"><a id=\"ver\" alt=\"Ver registro\">View</a><a id=\"edit\" alt=\"Editar registro\">Edit</a></td>";
+      da+=tre;
+    }
   }
 	
 	if(da.length>1){
@@ -94,7 +105,10 @@ function crearTr(data){
               print(result);
                 if(result.ok==true){
                   $("h1").append("<br>exitoso");
-                  $('#vole')[0].reset();
+                  if (ad!="1") {
+                    $('#vole')[0].reset();
+                  }
+                  
                   
 
 
@@ -105,13 +119,16 @@ function crearTr(data){
     });
   });
   $("tr #ver").on('click',function(){
-    
+      var mas=$(this).parent().attr("id");
+    // var m=$("#"+mas).parent().attr("id");
+      var d="id_vo="+mas+"&crsf=volet";
+      print(d);
       print("ver registro");
     $("#c").load('../html/ver.html #ver');
     $.ajax({
             type: 'get',
             url: '../php/back.php',
-            data:da,
+            data:d,
             dataType:'JSON',
             success: function (result) {
               print(result);

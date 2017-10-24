@@ -263,10 +263,22 @@
 				$_SESSION["user"]=NULL;
 				echo json_encode(array('ok' =>"bye"));
 			}elseif ($this->form["crsf"]=="voleto") {
-				$user=$this->db->Select($this->form["id_vo"],"id","voleto","SELECT ser,fecha,ubicacion,nom FROM registros A1,voleto A2,evento A3 WHERE A2.id=A1.id_vo and A3.id=A1.id_eve");
+				$ro=$this->form["id_vo"];
+				$user=$this->db->Select($this->form["id_vo"],"id","voleto","SELECT ser,fecha,ubicacion,nom FROM registros A1,voleto A2,evento A3 WHERE A1.id_vo=$ro and A2.id=A1.id_vo and A3.id=A1.id_eve");
 				$this->db->conexion();
 				$usss=$this->db->Select("*","","evento","0");
 				$user["vol"]=$usss["row"];
+				echo json_encode($user);
+			}elseif ($this->form["crsf"]=="volet") {
+				$ro=$this->form["id_vo"];
+				$uss=$this->db->Select($this->form["id_vo"],"id","voleto","SELECT ser,fecha,ubicacion,nom,id_us FROM registros A1,voleto A2,evento A3 WHERE A1.id_vo=$ro and A2.id=A1.id_vo and A3.id=A1.id_eve");
+				
+				$this->db->conexion();
+				$n=$uss["row"][0]["id_us"];
+				$user=$this->db->Select($n,"id","user","0");
+				// echo json_encode(array("ok"=>$user,));
+				// $this->db->conexion();
+				$user["vol"]=$uss["row"];
 				echo json_encode($user);
 			}
 		}
