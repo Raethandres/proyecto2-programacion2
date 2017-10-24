@@ -1,13 +1,13 @@
 function print(arg){
-	console.log(arg);
+  console.log(arg);
 };
 
 function crearTr(data){
-	var tri="<tr id=";
-	var tdi="<td>";
-	var tre="</tr>";
-	var tde="</td>";
-	var da="";
+  var tri="<tr id=";
+  var tdi="<td>";
+  var tre="</tr>";
+  var tde="</td>";
+  var da="";
   if (ad=="1") {
     for (var i = 0; i < data.length; i++) {
     da+=tri+data[i].id_vo+">";
@@ -21,8 +21,8 @@ function crearTr(data){
     
   }
   }
-	
-	if(da.length>1){
+  
+  if(da.length>1){
     $(".table-hover").append("<tbody>"+da+"</tbody>");
   print("sd");
   $("tr #eliminar").on('click',function(){
@@ -108,7 +108,7 @@ function crearTr(data){
     var mas=$(this).parent().attr("id");
     // var m=$("#"+mas).parent().attr("id");
     var d="id_vo="+mas+"&crsf=voleto";
-    print(d);
+    $("#c").load('../html/ver.html #ver');
     $.ajax({
             type: 'get',
             url: '../php/back.php',
@@ -116,52 +116,51 @@ function crearTr(data){
             dataType:'JSON',
             success: function (result) {
               print(result);
-              location.reload();
-              
+                if(result.ok=="entro"){
+                  print(result);
+                  $("h2").append(result.row[0].nombre);
+                  $("#id_nombre").append(result.row[0].nombre);
+                  $("#id_apellido").append(result.row[0].apellido);
+                  $("#id_cedula").append(result.row[0].cedula);
+                  $("#id_sexo").append(result.row[0].sexo);
+                  $("#id_direccion").append(result.row[0].dire);
+                  $("#id_email").append(result.row[0].email);
+                  $("#id_telefono").append(result.row[0].telefono);
+                  $("#id_username").append(result.row[0].user);
+                  $("#id_pass").append(result.row[0].pass);
+
+                  $("#id_serial").append(result.vol[0].ser);
+                  $("#id_evento").append(result.vol[0].nom);
+                  $("#id_fecha").append(result.vol[0].fecha);
+                  $("#id_ubicacion").append(result.vol[0].ubicacion);
+                }   
             }
           });
+  
   });
-  // $("#eliminar").click(function(){
-  //   var mas=$(this).parent().attr("id");
-  //   var m=$("#"+mas).parent().attr("id");
-  //   var d="id_vo="+m+"&crsf=delete";
-  //   print(d);
-  //   // $.ajax({
-  //   //         type: 'get',
-  //   //         url: '../php/back.php',
-  //   //         data:d,
-  //   //         dataType:'JSON',
-  //   //         success: function (result) {
-  //   //           print(result);
-  //   //           location.href="..";
-              
-  //   //         }
-  //   //       });
-  // });
-  }
-	
-	
-	// $(".table-hover").
+  
+  
+  // $(".table-hover").
 };
 var ad;
 var id;
 $(document).ready(function(){
-	
   
-	var da="crsf=user";
-	$.ajax({
-			
+  
+  var da="crsf=user";
+  $.ajax({
+      
             type: 'post',
             url: '../php/back.php',
             data: da,
             dataType:'JSON',
             success: function (result) {
                 if(result.ok=="entro"){
-                	print(result);
-                	
-                	$("#user_n").html(result.us.row[0].nombre);
-                	$("#user_np").html(result.us.row[0].nombre+" "+result.us.row[0].apellido);
-                	id=result.us.row[0].id;
+                  print(result);
+                  
+                  $("#user_n").html(result.us.row[0].nombre);
+                  $("#user_np").html(result.us.row[0].nombre+" "+result.us.row[0].apellido);
+                  id=result.us.row[0].id;
                   ad=result.us.row[0].admin;
                   if (result.row!="no") {
                     crearTr(result.row)
@@ -189,24 +188,24 @@ $(document).ready(function(){
           });
 
   });
-	$("#user_n").click(function(){
-		// if (!$("#c").children("#home")) {
+  $("#user_n").click(function(){
+    // if (!$("#c").children("#home")) {
       location.reload();
-			// $("#c").load('../html/home.html');
-			// da="crsf=user";
-			// $.ajax({
-			
+      // $("#c").load('../html/home.html');
+      // da="crsf=user";
+      // $.ajax({
+      
    //          type: 'post',
    //          url: '../php/back.php',
    //          data: da,
    //          dataType:'JSON',
    //          success: function (result) {
    //              if(result.ok=="entro"){
-   //              	print(result);
-   //              	crearTr(result.row)
-   //              	$("#user_n").html(result.row[1].nombre);
-   //              	$("#user_np").html(result.row[1].nombre+" "+result.row[1].apellido);
-   //              	id=result.row[1].id_us;
+   //               print(result);
+   //               crearTr(result.row)
+   //               $("#user_n").html(result.row[1].nombre);
+   //               $("#user_np").html(result.row[1].nombre+" "+result.row[1].apellido);
+   //               id=result.row[1].id_us;
 
 
    //              }
@@ -215,11 +214,11 @@ $(document).ready(function(){
    //        });
 
 
-		// }
+    // }
 
-	});
-	$("#cargar-boleto").click(function(){
-		$("#c").load('../html/voletos.html');
+  });
+  $("#cargar-boleto").click(function(){
+    $("#c").load('../html/voletos.html');
     var d="crsf=evento"
     $.ajax({
             type: 'get',
@@ -246,18 +245,18 @@ $(document).ready(function(){
               
             }
           });
-		$("#c").on('click',"#volet",function(){
-			print($('#vole').serialize());
+    $("#c").on('click',"#volet",function(){
+      print($('#vole').serialize());
       
-			$.ajax({
+      $.ajax({
             type: 'post',
             url: '../php/back.php',
             data:$('#vole').serialize(),
             dataType:'JSON',
             success: function (result) {
-            	print(result);
+              print(result);
                 if(result.ok==true){
-                	$("h1").append("<br>exitoso");
+                  $("h1").append("<br>exitoso");
                   $('#vole')[0].reset();
                   
 
@@ -266,46 +265,13 @@ $(document).ready(function(){
               
             }
           });
-		});
-	});
-	$("#btn-logup").click(function(){
-  		print("asas");
-  		var da="id="+id+"&crsf=chus"
+    });
+  });
+  $("#btn-logup").click(function(){
+      print("asas");
+      var da="id="+id+"&crsf=chus"
       print(da)
-		$("#c").load('../html/logup.html #sign-up');
-		$.ajax({
-            type: 'get',
-            url: '../php/back.php',
-            data:da,
-            dataType:'JSON',
-            success: function (result) {
-            	print(result);
-                if(result.ok=="entro"){
-                	print(result);
-                  // print("sige");
-                  $("#id_nombre").val(result.row[0].nombre);
-                	$("#id_apellido").val(result.row[0].apellido);
-                  $("#id_cedula").val(result.row[0].cedula);
-                  $("#id_sexo").val(result.row[0].sexo);
-                  $("#id_direccion").val(result.row[0].dire);
-                  $("#id_email").val(result.row[0].email);
-                  $("#id_telefono").val(result.row[0].telefono);
-                  $("#id_username").val(result.row[0].user);
-                  $("#id_pass").val(result.row[0].pass);
-          			// print(result.row);
-          			// $("#tik").html(result.row.nombre);
-          			// $("#usul").html(result.row.nombre);
-          			// $(".dropdown-content").css({display: 'none'});
-
-
-                }
-              
-            }
-          });
-
-  $("#ver").click(function(){
-      print("ver registro");
-    $("#c").load('../html/ver.html #ver');
+    $("#c").load('../html/logup.html #sign-up');
     $.ajax({
             type: 'get',
             url: '../php/back.php',
@@ -315,24 +281,28 @@ $(document).ready(function(){
               print(result);
                 if(result.ok=="entro"){
                   print(result);
-                  $("h2").append(result.row[0].nombre);
-                  $("#id_nombre").append(result.row[0].nombre);
-                  $("#id_apellido").append(result.row[0].apellido);
-                  $("#id_cedula").append(result.row[0].cedula);
-                  $("#id_sexo").append(result.row[0].sexo);
-                  $("#id_direccion").append(result.row[0].dire);
-                  $("#id_email").append(result.row[0].email);
-                  $("#id_telefono").append(result.row[0].telefono);
-                  $("#id_username").append(result.row[0].user);
-                  $("#id_pass").append(result.row[0].pass);
+                  // print("sige");
+                  $("#id_nombre").val(result.row[0].nombre);
+                  $("#id_apellido").val(result.row[0].apellido);
+                  $("#id_cedula").val(result.row[0].cedula);
+                  $("#id_sexo").val(result.row[0].sexo);
+                  $("#id_direccion").val(result.row[0].dire);
+                  $("#id_email").val(result.row[0].email);
+                  $("#id_telefono").val(result.row[0].telefono);
+                  $("#id_username").val(result.row[0].user);
+                  $("#id_pass").val(result.row[0].pass);
+                // print(result.row);
+                // $("#tik").html(result.row.nombre);
+                // $("#usul").html(result.row.nombre);
+                // $(".dropdown-content").css({display: 'none'});
 
-                  $("#id_serial").append(result.vol[0].ser);
-                  $("#id_evento").append(result.vol[0].nom);
-                  $("#id_fecha").append(result.vol[0].fecha);
-                  $("#id_ubicacion").append(result.vol[0].ubicacion);
-                }   
+
+                }
+              
             }
           });
+
+ 
 
       $("#c").on('click',"#send-up",function(){
         print("w");
@@ -365,27 +335,27 @@ $(document).ready(function(){
       print("Entro a evento registro");
     $("#c").load('../html/evento.html #registro-event');
     
-		$("#c").on('click',"#cargar-evento",function(){
-			print("ss");
+    $("#c").on('click',"#cargar-evento",function(){
+      print("ss");
       
-			$.ajax({
+      $.ajax({
             type: 'post',
             url: '../php/back.php',
             data:$('#resgistro-evento').serialize(),
             dataType:'JSON',
             success: function (result) {
-            	print(result);
+              print(result);
                 if(result.ok==true){
-                	$("h2").html("cargado exitoso");
+                  $("h2").html("cargado exitoso");
                   $('#resgistro-evento')[0].reset();
-                	
+                  
 
 
                 }
               
             }
           });
-		});
-		}
+    });
+    }
 );
 });

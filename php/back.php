@@ -228,8 +228,7 @@
 				}
 				echo json_encode(array("ok"=>true));
 
-			}elseif ($this->form["crsf"]=="voleto") {
-				$u=$_SESSION["user"];
+			}elseif ($this->form["crsf"]=="volet") {
 				
 				$r=$this->db->Update($this->form["serial"],"ser","voleto","id",$this->form["id_vo"]);
 				$this->db->conexion();
