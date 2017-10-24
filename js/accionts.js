@@ -58,7 +58,7 @@ $(".btn-logup").click(function(){
 
 		}
 );
-
+  var sw=0;
 	$("#send").click(function(){
 	print($('#login').serialize());
 	if ($("#user").val()!=" " && $("#pasword").val()!=" " ) {
@@ -79,6 +79,13 @@ $(".btn-logup").click(function(){
 
                   }
 
+                }else{
+                  if (sw==0) {
+                    $("label").append("<strong class=\"rojo\"> *Incorrecto </strong>");
+                    sw=1;
+                  }else{
+                    $("label").append(" ");
+                  }
                 }
               
             }
