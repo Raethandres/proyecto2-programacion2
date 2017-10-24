@@ -153,7 +153,8 @@ body{
 
 /* Add a grey background color to dropdown links on hover */
 .dropdown-content a:hover {
-  background-color: var(--color-secundario);
+  background-color: #fff;
+  color: #000;
 }
 a .logo :hover{
   background-color: #f9f9f9;
@@ -395,7 +396,7 @@ padding: 0px !important;
   width: 100%;
   margin-top: 0px;
 }
-#admin #ver,#admin #edit,#admin #eliminar, #btn-logup,.btn-logup , #btn-logout,#evento{
+#admin #ver,#admin #edit,#admin #eliminar, #btn-logup,.btn-logup, #btn-logout,#evento{
   cursor: pointer;
 }
 #admin #ver:hover{
@@ -415,5 +416,28 @@ padding: 0px !important;
   border-color: var(--color-terciario) !important;
   background-color: #fff !important;
   color: #000 !important;
+}
+.rojo{
+  color: red;
+}
+#superponer {
+  position: relative;
+  text-align: center;
+}
+p{
+  width: 100%;
+  padding-left: 10px;
+  text-align: left;
+  margin: 2px;
+}
+.ver h2{
+  width: 100%;
+  padding-left: 10px;
+  background-color: var(--color-terciario);
+  font-size: 1.5em;
+}
+.borde{
+  width: 100%;
+  border-bottom: 2px solid var(--color-principal);
 }
 /******************************************************************/
