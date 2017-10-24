@@ -190,6 +190,7 @@ $(document).ready(function(){
             	print(result);
                 if(result.ok==true){
                 	$("h1").append("<br>exitoso");
+                  $('#vole')[0].reset();
                   
 
 
@@ -218,10 +219,10 @@ $(document).ready(function(){
                 	$("#id_apellido").val(result.row[0].apellido);
                   $("#id_cedula").val(result.row[0].cedula);
                   $("#id_sexo").val(result.row[0].sexo);
-                  $("#id_direccion").val(result.row[0].direccion);
+                  $("#id_direccion").val(result.row[0].dire);
                   $("#id_email").val(result.row[0].email);
                   $("#id_telefono").val(result.row[0].telefono);
-                  $("#id_username").val(result.row[0].username);
+                  $("#id_username").val(result.row[0].user);
                   $("#id_pass").val(result.row[0].pass);
           			// print(result.row);
           			// $("#tik").html(result.row.nombre);
@@ -233,6 +234,30 @@ $(document).ready(function(){
               
             }
           });
+      $("#c").on('click',"#send-up",function(){
+      $.ajax({
+            type: 'put',
+            url: '../php/back.php',
+            data: $('#logup').serialize(),
+            dataType:'JSON',
+            success: function (result) {
+              print(result);
+                if(result.ok==true){
+                  location.reload();
+                  $("h1").append("<br><p>guardado exitoso</p>");
+
+                // print(result.row);
+                // $("#tik").html(result.row.nombre);
+                // $("#usul").html(result.row.nombre);
+                // $(".dropdown-content").css({display: 'none'});
+
+
+                }
+              
+            }
+          });
+    });
+
     });
   //Carga html del registro de evento-Admin
   $("#evento").click(function(){
