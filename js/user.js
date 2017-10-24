@@ -235,6 +235,7 @@ $(document).ready(function(){
             }
           });
       $("#c").on('click',"#send-up",function(){
+        print("w");
       $.ajax({
             type: 'put',
             url: '../php/back.php',

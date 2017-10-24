@@ -167,12 +167,12 @@
 			}
 		}
 		function Update($data,string $tipo,string $table,$place,$pla){
-
+			$us=
 			$sql="UPDATE $table SET $tipo=$data WHERE $place=\"$pla\"";
 			// echo json_encode(array("ok"=>$sql));
 			$r=$this->coon->query($sql);
 			mysqli_close($this->coon);
-			echo json_encode(array("ok"=>$r));
+			
 		}
 		function Delete($vo,$wh){
 			$sql = "DELETE FROM registros WHERE id_vo=$vo";
@@ -204,6 +204,8 @@
 				$this->Get();
 			}elseif ($this->tipo=="Delete") {
 				$this->Delete();
+			}elseif ($this->tipo=="Put") {
+				$this->Put();
 			}
 			// var_dump(tipo);
 			// fu=$this->func[$this->tipo];
@@ -212,6 +214,12 @@
 
 
 		function Put(){
+			if ($this->form["crsf"]=="logup") {
+				$us=$this->db->Select($_SESSION["user"],"id_us","registros","0");
+				echo json_encode(array("ok"=>$us));
+				// $r=$this->db->Update($t,$this->form["nombre"],"user","id",$_SESSION["user"]);
+
+			}
 
 		} 
 
@@ -281,7 +289,7 @@
 				// echo json_encode(array("r"=>$t));
 				$this->db->conexion();
 				$r=$this->db->Update($t,$this->form["ubicacion"],"evento","nom",$this->form["evento"]);
-				// echo json_encode(array("r"=>$r));
+				echo json_encode(array("ok"=>$r));
 			}elseif ($this->form["crsf"]=="evento") {
 				$user=$this->db->Insert($this->form,"evento");
 			}
