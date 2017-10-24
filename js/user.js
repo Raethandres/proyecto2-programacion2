@@ -234,6 +234,38 @@ $(document).ready(function(){
               
             }
           });
+
+  $("#ver").click(function(){
+      print("ver registro");
+    $("#c").load('../html/ver.html #ver');
+    $.ajax({
+            type: 'get',
+            url: '../php/back.php',
+            data:da,
+            dataType:'JSON',
+            success: function (result) {
+              print(result);
+                if(result.ok=="entro"){
+                  print(result);
+                  $("h2").append(result.row[0].nombre);
+                  $("#id_nombre").append(result.row[0].nombre);
+                  $("#id_apellido").append(result.row[0].apellido);
+                  $("#id_cedula").append(result.row[0].cedula);
+                  $("#id_sexo").append(result.row[0].sexo);
+                  $("#id_direccion").append(result.row[0].dire);
+                  $("#id_email").append(result.row[0].email);
+                  $("#id_telefono").append(result.row[0].telefono);
+                  $("#id_username").append(result.row[0].user);
+                  $("#id_pass").append(result.row[0].pass);
+
+                  $("#id_serial").append(result.vol[0].ser);
+                  $("#id_evento").append(result.vol[0].nom);
+                  $("#id_fecha").append(result.vol[0].fecha);
+                  $("#id_ubicacion").append(result.vol[0].ubicacion);
+                }   
+            }
+          });
+
       $("#c").on('click',"#send-up",function(){
       $.ajax({
             type: 'put',

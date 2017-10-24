@@ -396,7 +396,7 @@ padding: 0px !important;
   width: 100%;
   margin-top: 0px;
 }
-#admin #ver,#admin #edit,#admin #eliminar, #btn-logup,.btn-logup, #btn-logout,#evento{
+#admin #ver,#admin #edit,#user_n,#admin #eliminar, #btn-logup,.btn-logup, #btn-logout,#evento{
   cursor: pointer;
 }
 #admin #ver:hover{
